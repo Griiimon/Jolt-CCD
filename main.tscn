@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://d34oqfun48ylv"]
+
+[ext_resource type="Script" uid="uid://n7jbh2iaj1gm" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dpux00ti8k88w" path="res://box.tscn" id="2_0xm2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.118792, 0.256366, 0.198239, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.118792, 0.256366, 0.198239, 1)
+metallic = 0.5
+roughness = 0.61
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ig7tw")
+box_scene = ExtResource("2_0xm2m")
+initial_y_offset = 1.0
+initial_z_offset = 3.0
+random_rotation = true
+constant_force = Vector3(0, 0, -30)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_0xm2m")
+use_collision = true
+size = Vector3(25, 0.1, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.92075, -0.390153, 0, 0.390153, 0.92075, 0, 3.52141, -11.2012)
+use_collision = true
+size = Vector3(25, 0.1, 20)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.17938, 12.3517)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.566866, 0.82381, 0, -0.82381, 0.566866, 0, -5.08425, 0)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="drop_boxes"]

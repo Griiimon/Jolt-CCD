@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpux00ti8k88w"]
+
+[ext_resource type="Script" uid="uid://caskpomi634o3" path="res://box.gd" id="1_g2tbl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2tbl"]
+albedo_color = Color(0.766831, 0.21424, 0.21181, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2tbl"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_h2yge")
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Box" type="RigidBody3D"]
+collision_layer = 0
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_g2tbl")
+ccd_material = SubResource("StandardMaterial3D_g2tbl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_g2tbl")
